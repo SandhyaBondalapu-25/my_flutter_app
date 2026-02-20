@@ -16,7 +16,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final List<OnboardingData> _pages = [
     OnboardingData(
       icon: Icons.school,
-      title: 'Welcome to ABC Public School',
+      title: 'Welcome to Queen Marys Girls High School',
       description:
           'Your one-stop app for everything school — academics, events, and more. Stay connected with your school community.',
       secondaryIcon: Icons.auto_stories,

@@ -27,188 +27,201 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: GradientBubbleBackground(
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  // Top bar
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios,
-                              color: Colors.white),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        const Icon(Icons.menu, color: Colors.white, size: 28),
-                      ],
-                    ),
-                  ),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 40),
 
-                  const SizedBox(height: 30),
+                    // Same logo as splash screen
+                    const StudentAvatar(size: 120),
 
-                  // Avatar
-                  const StudentAvatar(size: 100),
+                    const SizedBox(height: 16),
 
-                  const SizedBox(height: 20),
-
-                  // Title
-                  const Text(
-                    'LOGIN',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 3,
-                    ),
-                  ),
-
-                  const SizedBox(height: 40),
-
-                  // Username field
-                  _buildTextField(
-                    controller: _usernameController,
-                    hint: 'Username',
-                    icon: Icons.person_outline,
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  // Password field
-                  _buildTextField(
-                    controller: _passwordController,
-                    hint: 'Password',
-                    icon: Icons.lock_outline,
-                    isPassword: true,
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  // Forgot password
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
-                          fontSize: 13,
-                        ),
+                    // School name
+                    const Text(
+                      'Queen Marys Girls High School',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        letterSpacing: 1,
                       ),
                     ),
-                  ),
 
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 30),
 
-                  // Login button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (_) => const Myhomepage()),
-                          (route) => false,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFFA726),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        elevation: 6,
-                        shadowColor: Colors.black38,
-                      ),
-                      child: const Text(
-                        'LOGIN',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 2,
-                        ),
+                    // Title
+                    const Text(
+                      'LOGIN',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 3,
                       ),
                     ),
-                  ),
 
-                  const SizedBox(height: 28),
+                    const SizedBox(height: 32),
 
-                  // OR divider
-                  Row(
-                    children: [
-                      Expanded(
-                          child: Divider(
-                              color: Colors.white.withOpacity(0.4),
-                              thickness: 1)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text('or',
-                            style: TextStyle(
-                                color: Colors.white.withOpacity(0.7),
-                                fontSize: 14)),
-                      ),
-                      Expanded(
-                          child: Divider(
-                              color: Colors.white.withOpacity(0.4),
-                              thickness: 1)),
-                    ],
-                  ),
+                    // Username field
+                    _buildTextField(
+                      controller: _usernameController,
+                      hint: 'Username',
+                      icon: Icons.person_outline,
+                    ),
 
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 18),
 
-                  // Social login buttons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _socialButton(Icons.g_mobiledata_rounded, 'Google'),
-                      const SizedBox(width: 16),
-                      _socialButton(Icons.facebook, 'Facebook'),
-                      const SizedBox(width: 16),
-                      _socialButton(Icons.apple, 'Apple'),
-                    ],
-                  ),
+                    // Password field
+                    _buildTextField(
+                      controller: _passwordController,
+                      hint: 'Password',
+                      icon: Icons.lock_outline,
+                      isPassword: true,
+                    ),
 
-                  const SizedBox(height: 30),
+                    const SizedBox(height: 6),
 
-                  // Sign up link
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Not a member? ',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
-                          fontSize: 14,
+                    // Forgot password - right aligned
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: const Size(0, 36),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (_) => const SignupScreen()),
-                          );
-                        },
-                        child: const Text(
-                          'Create Account',
+                        child: Text(
+                          'Forgot Password?',
                           style: TextStyle(
-                            color: Color(0xFFFFA726),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color(0xFFFFA726),
+                            color: Colors.white.withOpacity(0.85),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
 
-                  const SizedBox(height: 30),
-                ],
+                    const SizedBox(height: 24),
+
+                    // Login button
+                    SizedBox(
+                      width: double.infinity,
+                      height: 52,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final username = _usernameController.text.trim();
+                          final password = _passwordController.text.trim();
+
+                          if (username.isEmpty || password.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Enter the login credentials.'),
+                                backgroundColor: Color(0xFFE53935),
+                              ),
+                            );
+                          } else if (username == 'sandhya' && password == '12345') {
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (_) => const Myhomepage()),
+                              (route) => false,
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('username or password is incorrect'),
+                                backgroundColor: Color(0xFFE53935),
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFFA726),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 6,
+                          shadowColor: Colors.black38,
+                        ),
+                        child: const Text(
+                          'LOGIN',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 28),
+
+                    // OR divider
+                    Row(
+                      children: [
+                        Expanded(
+                            child: Divider(
+                                color: Colors.white.withOpacity(0.4),
+                                thickness: 1)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Text('or',
+                              style: TextStyle(
+                                  color: Colors.white.withOpacity(0.7),
+                                  fontSize: 14)),
+                        ),
+                        Expanded(
+                            child: Divider(
+                                color: Colors.white.withOpacity(0.4),
+                                thickness: 1)),
+                      ],
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // Social login buttons
+                    
+                    // Sign up link
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Not a member? ',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.7),
+                            fontSize: 14,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (_) => const SignupScreen()),
+                            );
+                          },
+                          child: const Text(
+                            'Create Account',
+                            style: TextStyle(
+                              color: Color(0xFFFFA726),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Color(0xFFFFA726),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 40),
+                  ],
+                ),
               ),
             ),
           ),
